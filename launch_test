@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# A simple guide about how to use this script.
+# First, go into the root directory of the project.
+# And then, execute the script with no arguments given will generate the result in the report/directory, with
+# both stdout and stderr results;
+# If you don't want the stdout and just want to see the stderr, please add --no-outlog.
+
+if [ -d report ]; then
+  rm -rf ./report
+fi
+mkdir report
+
+if [ "$1" = "--no-outlog" ]; then
+  make test > /dev/null 2> report/result.txt
+else
+  make test > report/test.log 2> report/result.txt
+fi
